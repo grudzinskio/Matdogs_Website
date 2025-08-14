@@ -1,0 +1,32 @@
+import React from 'react';
+import NewsCard from './NewsCard'; // Adjust the path if necessary
+import newsData from './newsData.json'; // Adjust the path if necessary
+
+function NewsSection() {
+  return (
+    <section className="bg-light py-16 px-4">
+      <div className="container mx-auto">
+        {/* Section Header */}
+        <div className="text-center mb-12">
+          <h2 className="text-4xl font-extrabold text-dark mb-2">Latest News & Updates</h2>
+          <p className="text-lg text-text-gray">Stay informed with the latest happenings at Matdogs Wrestling.</p>
+        </div>
+
+        {/* Grid for News Cards */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {newsData.map((article) => (
+            <NewsCard
+              key={article.id}
+              title={article.title}
+              date={article.date}
+              excerpt={article.excerpt}
+              category={article.category}
+            />
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+export default NewsSection;

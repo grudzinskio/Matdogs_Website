@@ -1,45 +1,77 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import NewsCard from '../components/NewsCard';
 
-function NewsCard({ title, date, excerpt, category }) {
-  const getCategoryColor = (category) => {
-    switch (category) {
-      case 'Registration': return 'border-blue-500 bg-blue-50';
-      case 'Events': return 'border-green-500 bg-green-50';
-      case 'Tournament': return 'border-purple-500 bg-purple-50';
-      case 'Special Events': return 'border-red-500 bg-red-50';
-      case 'Fundraising': return 'border-yellow-500 bg-yellow-50';
-      default: return 'border-gray-500 bg-gray-50';
-    }
-  };
+function News() {
+  const [articles, setArticles] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [selectedCategory, setSelectedCategory] = useState('All');
 
-  const getCategoryTextColor = (category) => {
-    switch (category) {
-      case 'Registration': return 'text-blue-700';
-      case 'Events': return 'text-green-700';
-      case 'Tournament': return 'text-purple-700';
-      case 'Special Events': return 'text-red-700';
-      case 'Fundraising': return 'text-yellow-700';
-      default: return 'text-gray-700';
-    }
-  };
+  useEffect(() => {
+    fetch('/newsData.json')
+      .then(response => response.json())
+      .then(data => {
+        setArticles(data);
+        setIsLoading(false);
+      })
+      .catch(error => {
+        console.error("Failed to fetch news data:", error);
+        setIsLoading(false);
+      });
+  }, []);
+
+  const categories = ['All', ...new Set(articles.map(article => article.category))];
+  
+  const filteredArticles = selectedCategory === 'All' 
+    ? articles 
+    : articles.filter(article => article.category === selectedCategory);
+
+  if (isLoading) {
+    return <div className="text-center p-10">Loading News...</div>;
+  }
 
   return (
-    <div className={`p-6 rounded-lg shadow-md border-l-4 transition duration-200 hover:shadow-lg ${getCategoryColor(category)}`}>
-      <div className="flex justify-between items-start mb-2">
-        <h2 className="text-2xl font-bold text-gray-800 flex-1 pr-4">{title}</h2>
-        {category && (
-          <span className={`px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-wide ${getCategoryTextColor(category)} bg-white bg-opacity-70`}>
-            {category}
-          </span>
-        )}
+    <div>
+      {/* Header */}
+      <div className="text-center mb-8">
+        <h1 className="text-4xl font-bold text-gray-800 mb-4">Matdogs News</h1>
+        <p className="text-lg text-gray-600">Stay up to date with the latest Cedarburg Matdogs wrestling news and events</p>
       </div>
-      <p className="text-sm text-gray-500 mb-4 font-medium">{date}</p>
-      <p className="text-gray-700 leading-relaxed">{excerpt}</p>
-      <button className="mt-4 text-blue-600 hover:text-blue-800 font-semibold transition duration-200">
-        Read More →
-      </button>
+
+      {/* Category Filter */}
+      <div className="mb-8">
+        <div className="flex flex-wrap justify-center gap-2">
+          {categories.map(category => (
+            <button
+              key={category}
+              onClick={() => setSelectedCategory(category)}
+              className={`category-filter ${selectedCategory === category ? 'active' : ''}`}
+            >
+              {category}
+            </button>
+          ))}
+        </div>
+      </div>
+
+      {/* Articles */}
+      <div className="space-y-6">
+        {filteredArticles.map(article => (
+          <NewsCard
+            key={article.id}
+            title={article.title}
+            date={article.date}
+            excerpt={article.excerpt}
+            category={article.category}
+          />
+        ))}
+      </div>
+
+      {filteredArticles.length === 0 && (
+        <div className="text-center text-gray-500 py-8">
+          No articles found for the selected category.
+        </div>
+      )}
     </div>
   );
 }
 
-export default NewsCard;
+export default News;
