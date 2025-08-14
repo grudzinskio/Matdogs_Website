@@ -24,13 +24,13 @@ function Header({ headerImage }) {
         </Link>
 
         {/* Desktop Navigation */}
-        <nav className="hidden md:flex space-x-2 items-center">
-          <Link to="/" className="nav-link">Home</Link>
-          <Link to="/news" className="nav-link">News</Link>
-          <Link to="/events" className="nav-link">Events</Link>
-          <Link to="/club" className="nav-link">Club Info</Link>
-          <Link to="/join" className="nav-link">Join</Link>
-          <Link to="/contact" className="nav-link">Contact</Link>
+      <nav className="hidden md:flex space-x-4 items-center flex-nowrap w-full justify-end">
+          <Link to="/" className="nav-link text-sm px-1">Home</Link>
+          <Link to="/news" className="nav-link text-sm px-1">News</Link>
+          <Link to="/events" className="nav-link text-sm px-1">Events</Link>
+          <Link to="/club" className="nav-link text-sm px-1">Club Info</Link>
+          <Link to="/join" className="nav-link text-sm px-1">Join</Link>
+          <Link to="/contact" className="nav-link text-sm px-1">Contact</Link>
           
           {/* Social Media Icons */}
           <div className="flex space-x-3 ml-6 border-l border-gray-300 pl-6">
