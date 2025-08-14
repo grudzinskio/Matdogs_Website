@@ -1,44 +1,69 @@
 import React, { useState, useEffect } from 'react';
 import WelcomeSection from '../components/WelcomeSection';
 import PromoSection from '../components/PromoSection';
+import RegistrationSection from '../components/RegistrationSection';
+import AgeGroupsSection from '../components/AgeGroupsSection';
 
 function Home() {
-  // 1. Set up state to hold our data and loading status
   const [pageData, setPageData] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
 
-  // 2. useEffect runs after the component renders
   useEffect(() => {
-    // 3. Fetch data from the public folder
     fetch('/homepageData.json')
       .then(response => response.json())
       .then(data => {
-        setPageData(data); // Put the loaded data into state
-        setIsLoading(false); // Set loading to false
+        setPageData(data);
+        setIsLoading(false);
       })
       .catch(error => {
         console.error("Failed to fetch homepage data:", error);
-        setIsLoading(false); // Also stop loading on error
+        setIsLoading(false);
       });
-  }, []); // The empty array [] means this effect runs only once
+  }, []);
 
-  // 4. Show a loading message while data is being fetched
   if (isLoading) {
     return <div className="text-center p-10">Loading...</div>;
   }
 
-  // 5. Render the page with the fetched data
   return (
-    <>
+    <div className="space-y-8">
+      {/* Hero Section with Motto */}
+      <div className="hero">
+        <div className="hero-content text-center">
+          <h1 className="hero-title text-white">Cedarburg Wrestling</h1>
+          <p className="hero-subtitle">{pageData.motto}</p>
+        </div>
+      </div>
+
       <WelcomeSection 
         heading={pageData.welcomeHeading} 
         paragraph={pageData.welcomeParagraph} 
       />
+      
+      <RegistrationSection
+        heading={pageData.registrationHeading}
+        text={pageData.registrationText}
+        seasonInfo={pageData.seasonInfo}
+      />
+
+      <AgeGroupsSection ageGroups={pageData.ageGroups} />
+      
       <PromoSection 
         heading={pageData.promoHeading} 
         imageSrc={pageData.promoImage} 
       />
-    </>
+
+      {/* Sponsor Section */}
+      <div className="sponsor-section">
+        <div className="sponsor-content">
+          <h2 className="sponsor-title">{pageData.sponsorHeading}</h2>
+          <p className="sponsor-text">{pageData.sponsorText}</p>
+          <button className="btn-primary">
+            Learn More
+          </button>
+        </div>
+      </div>
+    </div>
   );
 }
 

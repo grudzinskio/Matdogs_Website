@@ -1,7 +1,622 @@
 @import "tailwindcss";
 
-/* You can still add your own custom base styles below */
+/* Custom CSS Variables for Orange/Black Theme */
+:root {
+  --primary-orange: #ff6b35;
+  --primary-orange-dark: #e85a2b;
+  --secondary-orange: #ff8c42;
+  --accent-orange: #ffb366;
+  --light-orange: #fff4f0;
+  --primary-black: #1a1a1a;
+  --secondary-black: #2d2d2d;
+  --light-black: #404040;
+  --text-gray: #666666;
+  --light-gray: #f5f5f5;
+  --border-gray: #e0e0e0;
+}
+
+/* Base Styles */
 body {
-  background-color: #f8fafc; /* Tailwind's gray-50 */
-  font-family: sans-serif;
+  background-color: var(--light-gray);
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  color: var(--primary-black);
+  line-height: 1.6;
+}
+
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  color: var(--primary-black);
+}
+
+h1 {
+  font-size: 3rem;
+  line-height: 1.1;
+}
+
+h2 {
+  font-size: 2.25rem;
+  line-height: 1.2;
+}
+
+h3 {
+  font-size: 1.875rem;
+  line-height: 1.3;
+}
+
+/* Custom Components */
+.btn-primary {
+  background-color: var(--primary-orange);
+  color: white;
+  padding: 12px 24px;
+  border: none;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.btn-primary:hover {
+  background-color: var(--primary-orange-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(255, 107, 53, 0.3);
+}
+
+.btn-secondary {
+  background-color: transparent;
+  color: var(--primary-orange);
+  padding: 12px 24px;
+  border: 2px solid var(--primary-orange);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.btn-secondary:hover {
+  background-color: var(--primary-orange);
+  color: white;
+  transform: translateY(-2px);
+}
+
+.btn-dark {
+  background-color: var(--primary-black);
+  color: white;
+  padding: 12px 24px;
+  border: none;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.btn-dark:hover {
+  background-color: var(--secondary-black);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(26, 26, 26, 0.3);
+}
+
+/* Card Styles */
+.card {
+  background: white;
+  border: 1px solid var(--border-gray);
+  transition: all 0.3s ease;
+  overflow: hidden;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.1);
+}
+
+.card-orange {
+  border-left: 4px solid var(--primary-orange);
+}
+
+.card-black {
+  border-left: 4px solid var(--primary-black);
+}
+
+/* Hero Section */
+.hero {
+  background: linear-gradient(rgba(26, 26, 26, 0.7), rgba(45, 45, 45, 0.7)), url('/src/assets/cedarburg_wrestling.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 4rem;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(45deg, transparent 25%, rgba(255, 107, 53, 0.1) 25.1%, rgba(255, 107, 53, 0.1) 75%, transparent 75.1%);
+  opacity: 0.3;
+}
+
+.hero::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: repeating-linear-gradient(
+    45deg,
+    transparent,
+    transparent 10px,
+    rgba(255, 107, 53, 0.05) 10px,
+    rgba(255, 107, 53, 0.05) 20px
+  );
+  animation: subtle-move 20s linear infinite;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  padding: 6rem 2rem;
+}
+
+.hero-title {
+  font-size: 4rem;
+  font-weight: 900;
+  margin-bottom: 1rem;
+  text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.5);
+  letter-spacing: -0.02em;
+  color: white;
+}
+
+.hero-subtitle {
+  font-size: 1.75rem;
+  font-weight: 600;
+  color: var(--primary-orange);
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  letter-spacing: 0.02em;
+}
+
+@keyframes subtle-move {
+  0% { transform: translate(0, 0); }
+  100% { transform: translate(40px, 40px); }
+}
+
+/* Header Styles */
+.header {
+  background: white;
+  border-bottom: 3px solid var(--primary-orange);
+  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.08);
+}
+
+.nav-link {
+  color: var(--text-gray);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 8px 16px;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  background-color: var(--primary-orange);
+  transition: all 0.3s ease;
+  transform: translateX(-50%);
+}
+
+.nav-link:hover {
+  color: var(--primary-orange);
+}
+
+.nav-link:hover::after {
+  width: 80%;
+}
+
+/* Footer Styles */
+.footer {
+  background: var(--primary-black);
+  color: white;
+  border-top: 3px solid var(--primary-orange);
+}
+
+/* Welcome Section */
+.welcome-section {
+  background: white;
+  padding: 4rem 2rem;
+  text-align: center;
+  margin-bottom: 4rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  position: relative;
+}
+
+.welcome-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100px;
+  height: 4px;
+  background: var(--primary-orange);
+}
+
+.welcome-title {
+  font-size: 3rem;
+  font-weight: 800;
+  color: var(--primary-black);
+  margin-bottom: 2rem;
+  letter-spacing: -0.02em;
+}
+
+.welcome-text {
+  font-size: 1.25rem;
+  line-height: 1.8;
+  color: var(--text-gray);
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+/* Age Groups Styles */
+.age-groups-section {
+  background: white;
+  padding: 4rem 2rem;
+  margin-bottom: 4rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+.age-groups-title {
+  font-size: 2.5rem;
+  font-weight: 800;
+  text-align: center;
+  color: var(--primary-black);
+  margin-bottom: 3rem;
+  letter-spacing: -0.02em;
+}
+
+.age-group-card {
+  background: white;
+  border: 2px solid var(--border-gray);
+  padding: 2.5rem 1.5rem;
+  text-align: center;
+  transition: all 0.4s ease;
+  position: relative;
+  overflow: hidden;
+  height: 280px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.age-group-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 107, 53, 0.08), transparent);
+  transition: left 0.6s ease;
+}
+
+.age-group-card:hover::before {
+  left: 100%;
+}
+
+.age-group-card:hover {
+  border-color: var(--primary-orange);
+  transform: translateY(-8px);
+  box-shadow: 0 20px 60px rgba(255, 107, 53, 0.15);
+}
+
+.age-group-icon {
+  font-size: 4rem;
+  margin-bottom: 1.5rem;
+  transition: transform 0.3s ease;
+}
+
+.age-group-card:hover .age-group-icon {
+  transform: scale(1.1);
+}
+
+.age-group-name {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--primary-black);
+  margin-bottom: 0.5rem;
+  letter-spacing: -0.01em;
+}
+
+.age-group-description {
+  font-size: 1rem;
+  color: var(--text-gray);
+  font-weight: 500;
+}
+
+/* News Card Styles */
+.news-card {
+  background: white;
+  border: 1px solid var(--border-gray);
+  padding: 2rem;
+  transition: all 0.3s ease;
+}
+
+.news-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 35px rgba(0, 0, 0, 0.1);
+}
+
+.news-card.registration {
+  border-left: 4px solid var(--primary-orange);
+}
+
+.news-card.events {
+  border-left: 4px solid var(--secondary-orange);
+}
+
+.news-card.tournament {
+  border-left: 4px solid var(--primary-black);
+}
+
+.news-card.special-events {
+  border-left: 4px solid var(--accent-orange);
+}
+
+.news-card.fundraising {
+  border-left: 4px solid var(--light-black);
+}
+
+/* Category Filter */
+.category-filter {
+  display: inline-block;
+  padding: 8px 16px;
+  margin: 4px;
+  background: white;
+  color: var(--text-gray);
+  border: 2px solid var(--border-gray);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.category-filter:hover {
+  border-color: var(--primary-orange);
+  color: var(--primary-orange);
+}
+
+.category-filter.active {
+  background: var(--primary-orange);
+  border-color: var(--primary-orange);
+  color: white;
+}
+
+/* Registration Section */
+.registration-section {
+  background: linear-gradient(135deg, var(--light-orange) 0%, #fff8f4 100%);
+  border: 3px solid var(--primary-orange);
+  padding: 4rem 2rem;
+  margin-bottom: 4rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.registration-section::before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: linear-gradient(45deg, var(--primary-orange), var(--secondary-orange), var(--primary-orange));
+  z-index: -1;
+}
+
+.registration-section::after {
+  content: '';
+  position: absolute;
+  top: 1px;
+  left: 1px;
+  right: 1px;
+  bottom: 1px;
+  background: linear-gradient(135deg, var(--light-orange) 0%, #fff8f4 100%);
+  z-index: -1;
+}
+
+.registration-content {
+  position: relative;
+  z-index: 1;
+}
+
+.registration-title {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: var(--primary-black);
+  margin-bottom: 1.5rem;
+  letter-spacing: -0.02em;
+}
+
+.registration-text {
+  font-size: 1.125rem;
+  color: var(--primary-black);
+  margin-bottom: 1rem;
+  line-height: 1.7;
+}
+
+.registration-season {
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: var(--primary-orange);
+  margin-bottom: 2.5rem;
+}
+
+/* Sponsor Section */
+.sponsor-section {
+  background: linear-gradient(135deg, var(--primary-black) 0%, var(--secondary-black) 100%);
+  color: white;
+  padding: 4rem 2rem;
+  text-align: center;
+  margin-bottom: 4rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.sponsor-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="2" fill="rgba(255,107,53,0.1)"/></svg>') repeat;
+  background-size: 50px 50px;
+}
+
+.sponsor-content {
+  position: relative;
+  z-index: 1;
+}
+
+.sponsor-title {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: var(--primary-orange);
+  margin-bottom: 1.5rem;
+  letter-spacing: -0.02em;
+}
+
+.sponsor-text {
+  font-size: 1.125rem;
+  margin-bottom: 2.5rem;
+  line-height: 1.7;
+}
+
+/* Promo Section */
+.promo-section {
+  background: white;
+  padding: 4rem 2rem;
+  text-align: center;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  margin-bottom: 4rem;
+}
+
+.promo-title {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: var(--primary-black);
+  margin-bottom: 2.5rem;
+  letter-spacing: -0.02em;
+}
+
+.promo-image {
+  max-width: 100%;
+  height: auto;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+  transition: transform 0.3s ease;
+}
+
+.promo-image:hover {
+  transform: scale(1.02);
+}
+
+/* Event Card */
+.event-card {
+  background: white;
+  border: 1px solid var(--border-gray);
+  padding: 2rem;
+  border-left: 4px solid var(--primary-orange);
+  transition: all 0.3s ease;
+}
+
+.event-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 35px rgba(0, 0, 0, 0.1);
+}
+
+.event-date {
+  color: var(--primary-orange);
+  font-weight: 700;
+  font-size: 1.125rem;
+}
+
+/* Utilities */
+.text-primary {
+  color: var(--primary-orange);
+}
+
+.text-dark {
+  color: var(--primary-black);
+}
+
+.bg-primary {
+  background-color: var(--primary-orange);
+}
+
+.bg-dark {
+  background-color: var(--primary-black);
+}
+
+.bg-light {
+  background-color: var(--light-gray);
+}
+
+.border-primary {
+  border-color: var(--primary-orange);
+}
+
+.border-dark {
+  border-color: var(--primary-black);
+}
+
+/* Animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in-up {
+  animation: fadeInUp 0.6s ease-out;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  h1 {
+    font-size: 2.25rem;
+  }
+  
+  h2 {
+    font-size: 1.875rem;
+  }
+  
+  h3 {
+    font-size: 1.5rem;
+  }
+  
+  .section {
+    padding: 2rem 0;
+  }
+  
+  .registration-section,
+  .sponsor-section {
+    padding: 2rem;
+  }
 }

@@ -1,20 +1,37 @@
 [
   {
     "id": 1,
-    "title": "Registration for 2025-2026 Season is Open",
+    "title": "Registration for the 2026 season is open",
     "date": "August 14, 2025",
-    "excerpt": "Wrestling will start December 1st, 2025. Please contact us if you have any questions about the upcoming season."
+    "excerpt": "Wrestling will start December 1st, 2025. Please contact Sean Grudzinski at Sean@matdogs.com if you have any questions about the upcoming season.",
+    "category": "Registration"
   },
   {
     "id": 2,
-    "title": "Ben Peterson Clinic Was a Huge Success",
-    "date": "July 28, 2025",
-    "excerpt": "A big thank you to Olympic champion Ben Peterson for visiting and sharing his expertise with our young wrestlers."
+    "title": "Jesse Thielke Big Throw Camp Rescheduled",
+    "date": "November 1, 2024",
+    "excerpt": "The Jesse Thielke Big Throw Camp has been rescheduled for November 2nd and 3rd. This is an excellent opportunity for wrestlers to learn throwing techniques from an expert.",
+    "category": "Events"
   },
   {
     "id": 3,
+    "title": "GSBT 2022 Tournament Success",
+    "date": "March 15, 2022",
+    "excerpt": "The Grant Schoen Beginners Tournament was a huge success with over 200 young wrestlers participating. Thank you to all volunteers and families who made this event possible.",
+    "category": "Tournament"
+  },
+  {
+    "id": 4,
+    "title": "Ben Peterson Visit 2022",
+    "date": "February 20, 2022",
+    "excerpt": "Olympic wrestling champion Ben Peterson visited our club and provided invaluable coaching and inspiration to our young athletes. A once-in-a-lifetime experience for our Matdogs.",
+    "category": "Special Events"
+  },
+  {
+    "id": 5,
     "title": "Support the Matdogs: Become a Sponsor",
     "date": "July 15, 2025",
-    "excerpt": "We are an official non-profit organization and all donations are tax deductible. Click here to learn more about sponsoring."
+    "excerpt": "We are now an official non-profit organization and all donations are tax deductible. Your sponsorship helps provide equipment, coaching, and tournament opportunities for our young wrestlers.",
+    "category": "Fundraising"
   }
 ]
