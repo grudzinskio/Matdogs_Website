@@ -1,6 +1,0 @@
-export const homepageData = {
-  welcomeHeading: "Welcome!",
-  welcomeParagraph: "We are an ALL volunteer youth organization dedicated to promoting and encouraging the sport of wrestling. Get all the up-to-date information on the Cedarburg Matdogs wrestling program– including important news, calendar of events and contact information!",
-  promoHeading: "Jesse Thielke “Big Throw” Camp",
-  promoImage: "https://www.matdogs.com/wp-content/uploads/2024/10/Thielke-Camp-Reschedule-Flyer-11-2-and-11-3-1038x576.jpg"
-};
