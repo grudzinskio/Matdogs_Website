@@ -36,23 +36,26 @@ function Header({ headerImage }: HeaderProps) {
 
   return (
     <header className="header sticky top-0 z-[1000]">
-      <div className="container mx-auto p-4 flex justify-between items-center">
-        <Link to="/" className="flex items-center">
-          <img src={headerImage} alt="Cedarburg Wrestling" className="h-16" />
+      <div className="w-full max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
+        <Link to="/" className="flex items-center flex-shrink-0">
+          <img 
+            src={headerImage} 
+            alt="Cedarburg Wrestling" 
+            className="h-16 w-auto max-w-[200px] object-contain"
+          />
         </Link>
 
         {/* Desktop Navigation */}
-        <nav className="hidden lg:flex space-x-2 items-center flex-nowrap w-full justify-end">
-          <Link to="/" className="nav-link text-sm px-2">Home</Link>
-          <Link to="/news" className="nav-link text-sm px-2">News</Link>
+        <nav className="hidden lg:flex items-center gap-2 xl:gap-3 flex-1 justify-end ml-4 min-w-0">
+          <Link to="/" className="nav-link text-sm px-2 xl:px-3 whitespace-nowrap flex-shrink-0">Home</Link>
+          <Link to="/news" className="nav-link text-sm px-2 xl:px-3 whitespace-nowrap flex-shrink-0">News</Link>
           
           {/* Calendar with submenu */}
-          <div className="relative group">
-            <Link to="/events" className="nav-link text-sm px-2 flex items-center gap-1">
+          <div className="relative group flex-shrink-0">
+            <Link to="/events" className="nav-link nav-link-dropdown text-sm px-2 xl:px-3 whitespace-nowrap flex-shrink-0">
               Calendar
-              <ChevronDown size={14} />
             </Link>
-            <div className="absolute top-full left-0 mt-1 bg-[#1a1a1a] border border-gray-700 rounded shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 min-w-[180px]">
+            <div className="absolute top-full left-0 mt-1 bg-[#1a1a1a] border border-gray-700 rounded shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 min-w-[180px] z-50">
               <Link to="/events/sync" className="block px-4 py-2 text-white hover:bg-gray-800 hover:text-primary text-sm">
                 Sync to your Phone
               </Link>
@@ -60,12 +63,11 @@ function Header({ headerImage }: HeaderProps) {
           </div>
 
           {/* Photos with dropdown */}
-          <div className="relative group">
-            <button className="nav-link text-sm px-2 flex items-center gap-1">
+          <div className="relative group flex-shrink-0">
+            <button className="nav-link nav-link-dropdown text-sm px-2 xl:px-3 whitespace-nowrap flex-shrink-0">
               Photos
-              <ChevronDown size={14} />
             </button>
-            <div className="absolute top-full left-0 mt-1 bg-[#1a1a1a] border border-gray-700 rounded shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 min-w-[140px] max-h-[400px] overflow-y-auto">
+            <div className="absolute top-full left-0 mt-1 bg-[#1a1a1a] border border-gray-700 rounded shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 min-w-[140px] max-h-[400px] overflow-y-auto z-50">
               {photoYears.map((item) => (
                 <Link 
                   key={item.year} 
@@ -79,12 +81,11 @@ function Header({ headerImage }: HeaderProps) {
           </div>
 
           {/* Our Club with dropdown */}
-          <div className="relative group">
-            <button className="nav-link text-sm px-2 flex items-center gap-1">
-              Our Club
-              <ChevronDown size={14} />
+          <div className="relative group flex-shrink-0">
+            <button className="nav-link nav-link-dropdown text-sm px-2 xl:px-3 whitespace-nowrap flex-shrink-0">
+              Club
             </button>
-            <div className="absolute top-full left-0 mt-1 bg-[#1a1a1a] border border-gray-700 rounded shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 min-w-[240px] max-h-[400px] overflow-y-auto">
+            <div className="absolute top-full left-0 mt-1 bg-[#1a1a1a] border border-gray-700 rounded shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 min-w-[240px] max-h-[400px] overflow-y-auto z-50">
               {clubSubmenu.map((item) => (
                 <Link 
                   key={item.path} 
@@ -97,25 +98,27 @@ function Header({ headerImage }: HeaderProps) {
             </div>
           </div>
 
-          <Link to="/join" className="nav-link text-sm px-2">Join</Link>
-          <Link to="/sponsors" className="nav-link text-sm px-2">Sponsors</Link>
-          <Link to="/contact" className="nav-link text-sm px-2">Contact</Link>
+          <Link to="/join" className="nav-link text-sm px-2 xl:px-3 whitespace-nowrap flex-shrink-0">Join</Link>
+          <Link to="/sponsors" className="nav-link text-sm px-2 xl:px-3 whitespace-nowrap flex-shrink-0">Sponsors</Link>
+          <Link to="/contact" className="nav-link text-sm px-2 xl:px-3 whitespace-nowrap flex-shrink-0">Contact</Link>
           
           {/* Social Media Icons */}
-          <div className="flex space-x-3 ml-4 border-l border-gray-600 pl-4">
+          <div className="flex space-x-2 xl:space-x-3 ml-2 xl:ml-3 border-l border-gray-600 pl-2 xl:pl-3 flex-shrink-0">
             <a href="https://www.facebook.com/matdogs" target="_blank" rel="noopener noreferrer" 
-               className="text-gray-400 hover:text-primary transition duration-200">
-              <Facebook size={18} />
+               className="text-gray-400 hover:text-primary transition duration-200"
+               aria-label="Visit our Facebook page">
+              <Facebook size={20} />
             </a>
             <a href="https://twitter.com/matdogs" target="_blank" rel="noopener noreferrer"
-               className="text-gray-400 hover:text-primary transition duration-200">
-              <Twitter size={18} />
+               className="text-gray-400 hover:text-primary transition duration-200"
+               aria-label="Visit our Twitter page">
+              <Twitter size={20} />
             </a>
           </div>
         </nav>
 
         {/* Mobile Menu Button */}
-        <div className="lg:hidden">
+        <div className="lg:hidden flex-shrink-0">
           <button 
             onClick={() => setIsOpen(!isOpen)}
             className="p-2 text-white hover:text-primary"
@@ -186,11 +189,13 @@ function Header({ headerImage }: HeaderProps) {
           
           <div className="flex space-x-4 pt-4 border-t border-gray-700 w-full justify-center">
             <a href="https://www.facebook.com/matdogs" target="_blank" rel="noopener noreferrer" 
-               className="text-gray-400 hover:text-primary">
+               className="text-gray-400 hover:text-primary"
+               aria-label="Visit our Facebook page">
               <Facebook size={20} />
             </a>
             <a href="https://twitter.com/matdogs" target="_blank" rel="noopener noreferrer"
-               className="text-gray-400 hover:text-primary">
+               className="text-gray-400 hover:text-primary"
+               aria-label="Visit our Twitter page">
               <Twitter size={20} />
             </a>
           </div>

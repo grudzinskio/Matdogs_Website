@@ -173,6 +173,7 @@ h3 {
   background: var(--primary-black);
   border-bottom: 3px solid var(--primary-orange);
   box-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
+  width: 100%;
 }
 
 .nav-link {
@@ -180,9 +181,10 @@ h3 {
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.05em;
-  padding: 8px 16px;
+  padding: 8px 12px;
   transition: all 0.3s ease;
   position: relative;
+  display: inline-block;
 }
 
 .nav-link::after {
@@ -203,6 +205,29 @@ h3 {
 
 .nav-link:hover::after {
   width: 80%;
+}
+
+/* Dropdown indicator for nav items with submenus */
+.nav-link-dropdown {
+  padding-right: 18px;
+}
+
+.nav-link-dropdown::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  right: 4px;
+  transform: translateY(-50%);
+  width: 0;
+  height: 0;
+  border-left: 3px solid transparent;
+  border-right: 3px solid transparent;
+  border-top: 4px solid rgba(255, 255, 255, 0.5);
+  transition: all 0.3s ease;
+}
+
+.nav-link-dropdown:hover::before {
+  border-top-color: var(--primary-orange);
 }
 
 /* Footer Styles */
@@ -271,44 +296,21 @@ h3 {
   border: 2px solid var(--border-gray);
   padding: 2.5rem 1.5rem;
   text-align: center;
-  transition: all 0.4s ease;
   position: relative;
-  overflow: hidden;
   height: 280px;
   display: flex;
   flex-direction: column;
   justify-content: center;
-}
-
-.age-group-card::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255, 107, 53, 0.08), transparent);
-  transition: left 0.6s ease;
-}
-
-.age-group-card:hover::before {
-  left: 100%;
+  cursor: default;
 }
 
 .age-group-card:hover {
-  border-color: var(--primary-orange);
-  transform: translateY(-8px);
-  box-shadow: 0 20px 60px rgba(255, 107, 53, 0.15);
+  border-color: var(--border-gray);
 }
 
 .age-group-icon {
   font-size: 4rem;
   margin-bottom: 1.5rem;
-  transition: transform 0.3s ease;
-}
-
-.age-group-card:hover .age-group-icon {
-  transform: scale(1.1);
 }
 
 .age-group-name {
@@ -599,5 +601,53 @@ h3 {
   .registration-section,
   .sponsor-section {
     padding: 2rem;
+  }
+
+  .hero-title {
+    font-size: 2.5rem;
+  }
+
+  .hero-subtitle {
+    font-size: 1.5rem;
+  }
+
+  .hero-content {
+    padding: 4rem 1.5rem;
+  }
+
+  .age-groups-section {
+    padding: 2rem 1rem;
+  }
+
+  .age-group-card {
+    height: auto;
+    min-height: 240px;
+    padding: 2rem 1rem;
+  }
+
+  .welcome-section {
+    padding: 2rem 1rem;
+  }
+}
+
+/* Large screen optimizations */
+@media (min-width: 1920px) {
+  .hero-title {
+    font-size: 5rem;
+  }
+
+  .hero-subtitle {
+    font-size: 2rem;
+  }
+}
+
+/* Ensure proper scaling on all screen sizes */
+@media (min-width: 1024px) and (max-width: 1919px) {
+  .age-groups-section {
+    padding: 4rem 3rem;
+  }
+
+  .welcome-section {
+    padding: 4rem 3rem;
   }
 }

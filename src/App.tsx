@@ -1,4 +1,3 @@
-import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 import Header from './components/Header';
 import Footer from './components/Footer';
@@ -26,7 +25,7 @@ function App() {
     <div className="font-sans flex flex-col min-h-screen bg-gray-50">
       <Header headerImage={headerImage} />
 
-      <main className="container mx-auto p-4 md:p-8 flex-grow">
+      <main className="w-full max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 py-4 md:py-8 flex-grow">
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/news" element={<News />} />
