@@ -1,7 +1,7 @@
 {
   "welcomeHeading": "Welcome!",
   "welcomeParagraph": "We are an ALL volunteer youth organization dedicated to promoting and encouraging the sport of wrestling. Get all the up-to-date information on the Cedarburg Matdogs wrestling program– including important news, calendar of events and contact information!",
-  "registrationHeading": "Registration for the 2026 season is open",
+  "registrationHeading": "Registration for the 2026 season is CLOSED",
   "registrationText": "Wrestling will start December 1st, 2025. Please contact Sean Grudzinski at Sean@matdogs.com if you have any questions.",
   "ageGroups": {
     "matpups": "Matpups (4K, 5K, 1st)",
@@ -9,9 +9,14 @@
     "seniorMatdogs": "Senior Matdogs (5th-8th)"
   },
   "seasonInfo": "Our season runs December through mid-March starting December 1st, 2025.",
-  "promoHeading": "Jesse Thielke Big Throw Camp",
-  "promoImage": "https://www.matdogs.com/wp-content/uploads/2024/10/Thielke-Camp-Reschedule-Flyer-11-2-and-11-3-1038x576.jpg",
+  "season2026": {
+    "flyerLink": "https://www.matdogs.com/wp-content/uploads/2025/10/Matdogs-flyer-2026.pdf",
+    "gearLink": "https://masterprintwear.chipply.com/CedarburgMatdogs/?action=viewall",
+    "registrationLink": "https://go.teamsnap.com/forms/494116"
+  },
+  "practiceInfo": "All practices are held in the Cedarburg High School Wrestling room.",
   "sponsorHeading": "Interested in becoming a sponsor?",
   "sponsorText": "We are now an official non-profit and all donations are tax deductible",
+  "sponsorLink": "https://www.matdogs.com/wp-content/uploads/2019/10/Donation-and-Sponsorship-Opportunity.pdf",
   "motto": "Where do we win? On the Mat!"
 }

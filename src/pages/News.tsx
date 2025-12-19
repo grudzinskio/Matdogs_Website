@@ -1,15 +1,24 @@
 import React, { useState, useEffect } from 'react';
+import { motion } from 'framer-motion';
 import NewsCard from '../components/NewsCard';
+import { NewsArticle } from '../types';
+
+const fadeInUp = {
+  initial: { opacity: 0, y: 30 },
+  whileInView: { opacity: 1, y: 0 },
+  viewport: { once: true, margin: "-100px" },
+  transition: { duration: 0.6 }
+};
 
 function News() {
-  const [articles, setArticles] = useState([]);
+  const [articles, setArticles] = useState<NewsArticle[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [selectedCategory, setSelectedCategory] = useState('All');
 
   useEffect(() => {
     fetch('/newsData.json')
       .then(response => response.json())
-      .then(data => {
+      .then((data: NewsArticle[]) => {
         setArticles(data);
         setIsLoading(false);
       })
@@ -32,13 +41,23 @@ function News() {
   return (
     <div>
       {/* Header */}
-      <div className="text-center mb-8">
-        <h1 className="text-4xl font-bold text-gray-800 mb-4">Matdogs News</h1>
+      <motion.div 
+        className="text-center mb-8"
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+      >
+        <h1 className="text-4xl font-bold text-gray-800 mb-4">News</h1>
         <p className="text-lg text-gray-600">Stay up to date with the latest Cedarburg Matdogs wrestling news and events</p>
-      </div>
+      </motion.div>
 
       {/* Category Filter */}
-      <div className="mb-8">
+      <motion.div 
+        className="mb-8"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.5, delay: 0.2 }}
+      >
         <div className="flex flex-wrap justify-center gap-2">
           {categories.map(category => (
             <button
@@ -50,17 +69,20 @@ function News() {
             </button>
           ))}
         </div>
-      </div>
+      </motion.div>
 
       {/* Articles */}
-      <div className="space-y-6">
+      <div className="grid md:grid-cols-2 gap-8">
         {filteredArticles.map(article => (
           <NewsCard
             key={article.id}
             title={article.title}
             date={article.date}
+            author={article.author}
             excerpt={article.excerpt}
             category={article.category}
+            image={article.image}
+            link={article.link}
           />
         ))}
       </div>

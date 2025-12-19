@@ -1,8 +1,18 @@
 import React from 'react';
-import EventCard from '../components/EventsCard'; // Make sure this path is correct
+import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
+import EventCard from '../components/EventsCard';
+import { Event } from '../types';
+
+const fadeInUp = {
+  initial: { opacity: 0, y: 30 },
+  whileInView: { opacity: 1, y: 0 },
+  viewport: { once: true, margin: "-100px" },
+  transition: { duration: 0.6 }
+};
 
 function EventsPage() {
-  const upcomingEvents = [
+  const upcomingEvents: Event[] = [
     {
       id: 1,
       title: "Pre-Season Parent & Wrestler Meeting",
@@ -29,7 +39,7 @@ function EventsPage() {
     }
   ];
 
-  const pastEvents = [
+  const pastEvents: Event[] = [
     {
       id: 4,
       title: "2025 Season Banquet",
@@ -47,43 +57,64 @@ function EventsPage() {
   return (
     <section className="bg-light py-16 px-4">
       <div className="container mx-auto">
-        <div className="text-center mb-12">
+        <motion.div 
+          className="text-center mb-12"
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+        >
           <h1 className="text-4xl font-extrabold text-dark mb-2">Events & Calendar</h1>
           <p className="text-lg text-text-gray">Stay up-to-date with all Matdogs events.</p>
-        </div>
+        </motion.div>
 
         {/* Upcoming Events Section */}
-        <div className="mb-16">
+        <motion.div 
+          className="mb-16"
+          {...fadeInUp}
+        >
           <h2 className="text-3xl font-bold text-dark mb-6">Upcoming Events</h2>
           <div className="grid gap-8">
             {upcomingEvents.map(event => (
               <EventCard key={event.id} {...event} />
             ))}
           </div>
-        </div>
+        </motion.div>
 
         {/* Calendar Integration Section */}
-        <div className="bg-dark text-white p-8 rounded-lg text-center mb-16 shadow-lg">
-          <h3 className="text-2xl font-bold text-primary-orange mb-3">Never Miss a Date!</h3>
+        <motion.div 
+          className="bg-dark text-white p-8 rounded-lg text-center mb-16 shadow-lg"
+          style={{ background: 'linear-gradient(135deg, var(--primary-black) 0%, var(--secondary-black) 100%)' }}
+          {...fadeInUp}
+        >
+          <h3 className="text-2xl font-bold text-primary mb-3">Never Miss a Date!</h3>
           <p className="mb-6">Sync our official team calendar with your phone or computer.</p>
-          <button className="btn-primary">
-            Sync Calendar
-          </button>
-        </div>
+          <Link to="/events/sync" className="btn-primary inline-block">
+            Sync Calendar to Your Phone
+          </Link>
+        </motion.div>
 
         {/* Past Events Section */}
-        <div>
+        <motion.div
+          {...fadeInUp}
+        >
           <h2 className="text-3xl font-bold text-dark mb-6">Recent Highlights</h2>
           <div className="grid md:grid-cols-2 gap-6">
-            {pastEvents.map(event => (
-              <div key={event.id} className="bg-white p-6 rounded-lg border border-border-gray">
+            {pastEvents.map((event, index) => (
+              <motion.div 
+                key={event.id} 
+                className="bg-white p-6 rounded-lg border border-border-gray"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+              >
                 <p className="font-semibold text-primary mb-1">{event.date}</p>
                 <h3 className="text-xl font-bold text-dark mb-2">{event.title}</h3>
                 <p className="text-text-gray">{event.description}</p>
-              </div>
+              </motion.div>
             ))}
           </div>
-        </div>
+        </motion.div>
       </div>
     </section>
   );
